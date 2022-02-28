@@ -1,0 +1,74 @@
+<ActorFrame> <children>
+<!-- Player One Step Artist -->
+	<Layer
+		Type="ActorFrame"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="x,SCREEN_CENTER_X-(SCREEN_WIDTH*160/640+115);y,258;zoomy,0"
+		OnCommand="sleep,0.3;decelerate,0.3;zoomy,1"
+	><children>
+		<Layer
+			File="stepbubble.png"
+			InitCommand="x,52;y,-19;playcommand,Set"
+			SetCommand="%function(self) self:diffuse(BubbleColorRGB(PLAYER_1)) end" 
+			CurrentSongChangedMessageCommand="playcommand,Set" 
+			CurrentStepsP1ChangedMessageCommand="playcommand,Set" 
+		/>
+		<Layer 
+			Type="BitmapText"
+			Condition="not GAMESTATE:IsCourseMode()"
+			Font="_misoreg small"
+			Text="STEPS"
+			OnCommand="y,-29;ShadowLength,0;diffuse,#000000;horizalign,right;zoom,0.5"
+			SetCommand="%function(self)
+			self:diffuse(BubbleColorText(PLAYER_2))
+			end"
+			CurrentSongChangedMessageCommand="playcommand,Set" 
+			CurrentStepsP2ChangedMessageCommand="playcommand,Set" 
+		/>
+		<Layer 
+		   Font="_misobold small"
+			Text="???" 
+			OnCommand="y,-29;x,5;zoom,0.5;shadowlength,0;horizalign,left;maxwidth,250" 
+			SetCommand="%function(self) self:settext(GetStepsDescriptionText(PLAYER_1)) self:diffuse(BubbleColorText(PLAYER_1)) end" 
+			CurrentSongChangedMessageCommand="playcommand,Set" 
+			CurrentStepsP1ChangedMessageCommand="playcommand,Set" 
+		/>
+	</children></Layer>
+
+	<!-- Player Two Step Artist -->
+	<Layer
+		Type="ActorFrame"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="x,SCREEN_CENTER_X-(SCREEN_WIDTH*160/640-116);y,337;zoomy,0"
+		OnCommand="sleep,0.4;accelerate,0.2;zoomy,1;decelerate,0.2;zoomy,0.6;accelerate,0.1;zoomy,1"
+	><children>
+		<Layer
+			File="stepbubble.png"
+			InitCommand="x,-47;y,32;rotationz,180;playcommand,Set"
+			SetCommand="%function(self) self:diffuse(BubbleColorRGB(PLAYER_2)) end" 
+			CurrentSongChangedMessageCommand="playcommand,Set" 
+			CurrentStepsP2ChangedMessageCommand="playcommand,Set" 
+		/>
+		<Layer 
+			Font="_misobold small"
+			Text="???" 
+			OnCommand="y,29;x,-5;zoom,0.5;shadowlength,0;horizalign,right;maxwidth,250;zoomx,0.5;zoomy,0.1;accelerate,0.3;zoom,0.5" 
+			SetCommand="%function(self) self:settext(GetStepsDescriptionText(PLAYER_2)) self:diffuse(BubbleColorText(PLAYER_2)) end" 
+			CurrentSongChangedMessageCommand="playcommand,Set" 
+			CurrentStepsP2ChangedMessageCommand="playcommand,Set" 
+		/>
+		<Layer 
+			Type="BitmapText"
+			Condition="not GAMESTATE:IsCourseMode()"
+			Font="_misoreg small"
+			Text="STEPS"
+			OnCommand="y,29;horizalign,left;ShadowLength,0;diffuse,#000000;zoomx,0.5;zoomy,0.1;accelerate,0.3;zoom,0.5"
+			SetCommand="%function(self)
+			self:diffuse(BubbleColorText(PLAYER_2))
+			end"
+			CurrentSongChangedMessageCommand="playcommand,Set" 
+			CurrentStepsP2ChangedMessageCommand="playcommand,Set" 
+		/>
+	</children></Layer>
+	<Layer Condition="not GAMESTATE:IsCourseMode()" File="DifficultyList.xml" Command="x,SCREEN_CENTER_X-(SCREEN_WIDTH*160/640+94);y,SCREEN_CENTER_Y+25.5" OffCommand="linear,.3;diffusealpha,0" SongInfoMessageCommand="queuecommand,Update" />
+</children> </ActorFrame>

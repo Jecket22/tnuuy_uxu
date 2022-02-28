@@ -1,0 +1,24 @@
+<ActorFrame><children>
+	<ActorFrame UpdateCommand="%DifficultyList" />
+	<Layer Type="ActorFrame" InitCommand="spin;effectmagnitude,180,0,0;effectperiod,1.0;effectclock,bgm" UpdateCommand="y,(listPointerY[1]-1)*19.3"><children>
+		<Layer Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)" File="cursor p1" Command="x,-34;zoom,.8;bounce;effectmagnitude,-8,0,0;effectperiod,1.0;effectoffset,0.2;effectclock,bgm" />
+	</children></Layer>
+	<Layer Type="ActorFrame" InitCommand="spin;effectmagnitude,180,0,0;effectperiod,1.0;effectclock,bgm" UpdateCommand="y,(listPointerY[2]-1)*19.3"><children>
+		<Layer Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)" File="cursor p2" Command="x,233;zoom,.8;bounce;effectmagnitude,8,0,0;effectperiod,1.0;effectoffset,0.2;effectclock,bgm" />
+	</children></Layer>
+	<Layer Type="ActorFrame" Command="zoomx,.8" ><children>
+		<Layer Type="Quad"
+			OnCommand="%function(s) s:halign(0) s:x(-25) s:SetWidth(300) s:SetHeight(20) s:zoomx(0) s:queuecommand('Set') end"
+			SetCommand="%function(self) self:stoptweening() self:decelerate(.3) self:zoomx(GetDifficulty(PLAYER_1) < 21 and GetDifficulty(PLAYER_1)/20 or 1) end" 
+			CurrentSongChangedMessageCommand="playcommand,Set"
+			CurrentStepsP2ChangedMessageCommand="playcommand,Set"
+		/>
+		<!-- ok usually for this kind of thing I wouldn't add CurrentStepsP2ChangedMessageCommand
+			but for whatever black-magic reason this fixes the issues with the zoomx not being set correctly
+			- rya
+		-->
+	</children></Layer>
+	<!--<Layer Font="_wendywhite numbers" Text="" InitCommand="%function(s) s:aux(GetDifficulty()) s:settext(s:getaux()) end"
+		UpdateCommand="%function(self) DifficultyListCommand(self,'meter') end"
+	/>-->
+</children></ActorFrame>

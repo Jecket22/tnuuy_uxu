@@ -1,0 +1,7 @@
+<ActorFrame><children>
+	<Layer
+		Font="_wendy small"
+		Text="Exit Game"
+		InitCommand="horizalign,center;shadowlength,2;diffusealpha,0;sleep,0.4;accelerate,0.6;diffusealpha,1"
+	/>
+</children></ActorFrame>
