@@ -8,6 +8,7 @@ For example:
 - Custom Audio
 - A whole lot of polishing in metrics.ini
 - Removal of redundant functions that I copied from other themes
+- Make this as lightweight as possible (the fonts......... they haunt me)
 
 Other than that there are a couple things planned:
 - Addition of custom backgrounds
